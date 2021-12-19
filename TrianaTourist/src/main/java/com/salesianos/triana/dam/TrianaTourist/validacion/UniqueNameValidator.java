@@ -1,6 +1,7 @@
 package com.salesianos.triana.dam.TrianaTourist.validacion;
 
 import com.salesianos.triana.dam.TrianaTourist.repositories.CategoryRepository;
+import com.salesianos.triana.dam.TrianaTourist.services.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.util.StringUtils;
 
@@ -9,7 +10,7 @@ import javax.validation.ConstraintValidatorContext;
 
 @AllArgsConstructor
 public class UniqueNameValidator implements ConstraintValidator<UniqueName, String> {
-  private final CategoryRepository categoryRepository;
+  private final CategoryService categoryService;
 
     @Override
     public void initialize(UniqueName constraintAnnotation) {
@@ -17,6 +18,6 @@ public class UniqueNameValidator implements ConstraintValidator<UniqueName, Stri
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
-        return !categoryRepository.existsByName(value);
+        return !categoryService.existsByName(value);
     }
 }

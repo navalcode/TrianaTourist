@@ -48,4 +48,8 @@ public class CategoryService {
         category.setName(categoryDto.getName());
         return categoryDtoConverter.convertToDto(categoryRepository.save(category));
     }
+
+    public boolean existsByName(String name) {
+        return categoryRepository.existsByName(name);
+    }
 }
