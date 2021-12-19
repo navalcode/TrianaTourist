@@ -99,13 +99,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/category/",
+							"raw": "localhost:8080/route/",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"category",
+								"route",
 								""
 							]
 						}
@@ -345,7 +345,112 @@
 		},
 		{
 			"name": "Route",
-			"item": []
+			"item": [
+				{
+					"name": "All Routes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/route/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"route",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Route by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/route/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"route",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Route by id not found",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/route/5555",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"route",
+								"5555"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Route by id negative",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/route/-1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"route",
+								"-1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Route",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Tapas y codornices\",\r\n    \"ids\":[1,1]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/route/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"route",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

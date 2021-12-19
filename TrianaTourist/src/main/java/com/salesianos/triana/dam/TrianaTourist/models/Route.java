@@ -26,4 +26,9 @@ public class Route implements Serializable {
             name = "steps"
     )
     private List<Poi> steps= new ArrayList<>();
+
+    public Route(String name, List<Poi> steps) {
+        this.name = name;
+        this.steps = steps;
+    }
 }
