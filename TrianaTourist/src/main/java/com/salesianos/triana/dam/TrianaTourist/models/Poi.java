@@ -15,8 +15,8 @@ import java.util.List;
 @Builder
 public class Poi implements Serializable {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String location;
     private String date;

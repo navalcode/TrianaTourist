@@ -15,7 +15,8 @@ import java.util.List;
 @Builder
 public class Route implements Serializable {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "route_id",

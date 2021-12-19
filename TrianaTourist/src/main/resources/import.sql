@@ -1,0 +1,1 @@
+INSERT INTO CATEGORY (name) VALUES ('Monumentos');
