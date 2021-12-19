@@ -25,7 +25,7 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public CategoryDto getCategoryById(@PathVariable @Min(value = 0, message = "No se pueden buscar estaciones con un identificador negativo") Long id) {
+    public CategoryDto getCategoryById(@PathVariable @Min(value = 0, message = "No se pueden buscar categorias con un identificador negativo") Long id) {
         return categoryService.findById(id);
     }
 
@@ -35,7 +35,12 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    public CategoryDto updateCategory(@PathVariable @Min(value = 0, message = "No se pueden actualizar estaciones con un identificador negativo") Long id, @RequestBody @Valid CreateCategoryDto categoryDto) {
+    public CategoryDto updateCategory(@PathVariable @Min(value = 0, message = "No se pueden actualizar categorias con un identificador negativo") Long id, @RequestBody @Valid CreateCategoryDto categoryDto) {
         return categoryService.update(id, categoryDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCategory(@PathVariable @Min(value = 0, message = "No se pueden eliminar categorias con un identificador negativo") Long id) {
+        categoryService.deleteById(id);
     }
 }

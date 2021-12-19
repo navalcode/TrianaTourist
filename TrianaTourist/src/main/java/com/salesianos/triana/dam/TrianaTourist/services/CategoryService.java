@@ -8,6 +8,7 @@ import com.salesianos.triana.dam.TrianaTourist.errores.excepciones.ListEntityNot
 import com.salesianos.triana.dam.TrianaTourist.errores.excepciones.SingleEntityNotFoundException;
 import com.salesianos.triana.dam.TrianaTourist.models.Category;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.salesianos.triana.dam.TrianaTourist.repositories.CategoryRepository;
 
@@ -47,6 +48,14 @@ public class CategoryService {
         }
         category.setName(categoryDto.getName());
         return categoryDtoConverter.convertToDto(categoryRepository.save(category));
+    }
+
+    public ResponseEntity<?> deleteById(Long id) {
+     if(!categoryRepository.existsById(id)){
+        throw new SingleEntityNotFoundException(id,Category.class);
+    }
+        categoryRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     public boolean existsByName(String name) {
