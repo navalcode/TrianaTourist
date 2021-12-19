@@ -3,6 +3,9 @@ package com.salesianos.triana.dam.TrianaTourist.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -10,20 +13,18 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
-public class Poi {
+public class Poi implements Serializable {
     @Id
     @GeneratedValue
     private int id;
-
     private String name;
     private String location;
     private String date;
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id",foreignKey = @ForeignKey(name = "FK_POI_CATEGORY"))
     private Category category;
     private String coverPhoto;
     private String photo2;
     private String photo3;
-
 
 }
