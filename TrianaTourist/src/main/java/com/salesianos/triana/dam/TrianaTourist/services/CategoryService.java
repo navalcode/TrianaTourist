@@ -39,4 +39,13 @@ public class CategoryService {
         Category category = categoryDtoConverter.convertToEntity(categoryDto);
         return categoryDtoConverter.convertToDto(categoryRepository.save(category));
     }
+
+    public CategoryDto update(Long id, CreateCategoryDto categoryDto) {
+        Category category = categoryRepository.findById(id).orElse(null);
+        if (category == null) {
+            throw new SingleEntityNotFoundException(id,Category.class);
+        }
+        category.setName(categoryDto.getName());
+        return categoryDtoConverter.convertToDto(categoryRepository.save(category));
+    }
 }

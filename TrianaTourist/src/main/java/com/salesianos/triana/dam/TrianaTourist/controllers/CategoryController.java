@@ -33,4 +33,9 @@ public class CategoryController {
     public CategoryDto createCategory(@RequestBody @Valid CreateCategoryDto categoryDto) {
         return categoryService.save(categoryDto);
     }
+
+    @PutMapping("/{id}")
+    public CategoryDto updateCategory(@PathVariable @Min(value = 0, message = "No se pueden actualizar estaciones con un identificador negativo") Long id, @RequestBody @Valid CreateCategoryDto categoryDto) {
+        return categoryService.update(id, categoryDto);
+    }
 }
