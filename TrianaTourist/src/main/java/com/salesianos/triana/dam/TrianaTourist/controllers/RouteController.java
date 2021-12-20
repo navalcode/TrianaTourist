@@ -4,6 +4,8 @@ import com.salesianos.triana.dam.TrianaTourist.dto.Route.CreateRouteDto;
 import com.salesianos.triana.dam.TrianaTourist.dto.Route.RouteDto;
 import com.salesianos.triana.dam.TrianaTourist.services.RouteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +30,8 @@ public class RouteController {
     }
 
     @PostMapping("/")
-    public RouteDto saveRoute(@RequestBody CreateRouteDto dto) {
-        return routeService.save(dto);
+    public ResponseEntity<RouteDto> saveRoute(@RequestBody CreateRouteDto dto) {
+       return ResponseEntity.status(HttpStatus.CREATED).body(routeService.save(dto));
     }
+
 }

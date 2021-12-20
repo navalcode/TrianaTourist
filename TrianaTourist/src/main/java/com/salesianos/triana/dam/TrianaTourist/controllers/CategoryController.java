@@ -4,6 +4,8 @@ import com.salesianos.triana.dam.TrianaTourist.dto.category.CategoryDto;
 import com.salesianos.triana.dam.TrianaTourist.dto.category.CreateCategoryDto;
 import com.salesianos.triana.dam.TrianaTourist.services.CategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +32,8 @@ public class CategoryController {
     }
 
     @PostMapping("/")
-    public CategoryDto createCategory(@RequestBody @Valid CreateCategoryDto categoryDto) {
-        return categoryService.save(categoryDto);
+    public ResponseEntity<CategoryDto> createCategory(@RequestBody @Valid CreateCategoryDto categoryDto) {
+       return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.save(categoryDto));
     }
 
     @PutMapping("/{id}")
@@ -40,7 +42,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCategory(@PathVariable @Min(value = 0, message = "No se pueden eliminar categorias con un identificador negativo") Long id) {
-        categoryService.deleteById(id);
+    public ResponseEntity<?> deleteCategory(@PathVariable @Min(value = 0, message = "No se pueden eliminar categorias con un identificador negativo") Long id) {
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).body(categoryService.deleteById(id));
     }
 }
