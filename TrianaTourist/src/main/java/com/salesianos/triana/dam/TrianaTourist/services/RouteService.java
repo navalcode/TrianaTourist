@@ -70,7 +70,7 @@ public class RouteService {
     public RouteDto addPoiToRoute(Long id, Long idPoi) {
         Route route = routeRepository.findById(id).orElse(null);
         if (route == null) {
-            throw new SingleEntityNotFoundException(id,Category.class);
+            throw new SingleEntityNotFoundException(id,Route.class);
         }
         Poi poi = poiRepository.findById(idPoi).orElse(null);
         if (poi == null) {
