@@ -341,7 +341,102 @@
 		},
 		{
 			"name": "POI",
-			"item": []
+			"item": [
+				{
+					"name": "All Pois",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/poi/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"poi",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Poi by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/poi/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"poi",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Poi",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Un Poi\",\r\n    \"location\":\"-5.988765,30.765432\",\r\n    \"date\": \"08/09/1976\",\r\n    \"cat_id\": 1,\r\n    \"coverPhoto\": \"url1\",\r\n    \"photo2\":\"url2\",\r\n    \"photo3\":\"url3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/poi/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"poi",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Poi Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Un Poi editado\",\r\n    \"location\":\"-5.988765,30.765432\",\r\n    \"date\": \"08/09/1976\",\r\n    \"cat_id\": 1,\r\n    \"coverPhoto\": \"url1\",\r\n    \"photo2\":\"url2\",\r\n    \"photo3\":\"url3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/poi/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"poi",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Route",

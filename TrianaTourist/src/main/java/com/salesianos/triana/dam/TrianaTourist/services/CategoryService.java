@@ -58,6 +58,14 @@ public class CategoryService {
         return ResponseEntity.noContent().build();
     }
 
+    public Category findCategoryById(Long id) {
+        Category data = categoryRepository.findById(id).orElse(null);
+        if (data == null) {
+            throw new SingleEntityNotFoundException(id,Category.class);
+        }else
+            return data;
+    }
+
     public boolean existsByName(String name) {
         return categoryRepository.existsByName(name);
     }
