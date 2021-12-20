@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
 
@@ -30,12 +31,12 @@ public class RouteController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<RouteDto> saveRoute(@RequestBody CreateRouteDto dto) {
+    public ResponseEntity<RouteDto> saveRoute(@RequestBody @Valid CreateRouteDto dto) {
        return ResponseEntity.status(HttpStatus.CREATED).body(routeService.save(dto));
     }
 
     @PutMapping("/{id}")
-    public RouteDto editRoute(@PathVariable @Min(value = 0,message = "No se pueden buscar rutas con un identificador negativo") Long id, @RequestBody CreateRouteDto dto){
+    public RouteDto editRoute(@PathVariable @Min(value = 0,message = "No se pueden buscar rutas con un identificador negativo") Long id, @RequestBody @Valid CreateRouteDto dto){
         return routeService.edit(id,dto);
     }
     @PutMapping("/{id}/{id2}")

@@ -12,4 +12,6 @@ public interface RouteRepository extends JpaRepository<Route,Long> {
             "SELECT r FROM Route r LEFT JOIN r.steps s WHERE s.id = :id"
     )
     List<Route> findAllByIdPoi(Long id);
+
+    boolean existsByName(String value);
 }
