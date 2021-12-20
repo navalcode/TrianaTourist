@@ -8,8 +8,11 @@ import com.salesianos.triana.dam.TrianaTourist.errores.excepciones.ListEntityNot
 import com.salesianos.triana.dam.TrianaTourist.errores.excepciones.SingleEntityNotFoundException;
 import com.salesianos.triana.dam.TrianaTourist.models.Category;
 import com.salesianos.triana.dam.TrianaTourist.models.Poi;
+import com.salesianos.triana.dam.TrianaTourist.models.Route;
+import com.salesianos.triana.dam.TrianaTourist.repositories.RouteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.salesianos.triana.dam.TrianaTourist.repositories.PoiRepository;
 
@@ -24,6 +27,7 @@ public class PoiService {
     private final PoiDtoConverter poiDtoConverter;
     private final CategoryService categoryService;
     private final CategoryDtoConverter categoryDtoConverter;
+    private final RouteRepository routeRepository;
 
     public List<PoiDto> findAll(){
         return poiRepository.findAll().stream().map(poiDtoConverter::toDto).collect(Collectors.toList());
@@ -64,6 +68,17 @@ public class PoiService {
         poi.setPhoto2(dto.getPhoto2());
         poi.setPhoto3(dto.getPhoto3());
         return poiDtoConverter.toDto(poiRepository.save(poi));
+    }
+
+    public ResponseEntity<?> deleteById(Long id){
+        if(!poiRepository.existsById(id)){
+            throw new SingleEntityNotFoundException(id,Poi.class);
+        }
+            List<Route> routes = routeRepository.findAllByIdPoi(id);
+        routes.stream().forEach(route -> route.getSteps().removeIf(step -> step.getId().equals(id)));
+        routes.stream().forEach(route -> routeRepository.save(route));
+            poiRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     //Este método se usa para que el que RouteService pueda extraer todos los pois a la hora

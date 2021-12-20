@@ -41,5 +41,7 @@ public class PoiController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable @Min(value = 0, message = "No se puede eliminar un Poi con un identificador negativo"))
+    public ResponseEntity<?> delete(@PathVariable @Min(value = 0, message = "No se puede eliminar un Poi con un identificador negativo")Long id){
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(poiService.deleteById(id));
+    }
 }

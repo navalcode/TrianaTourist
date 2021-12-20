@@ -1,6 +1,7 @@
 package com.salesianos.triana.dam.TrianaTourist.models;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,6 +21,7 @@ public class Poi implements Serializable {
     private String name;
     private String location;
     private String date;
+    @Nullable
     @ManyToOne
     @JoinColumn(name = "category_id",foreignKey = @ForeignKey(name = "FK_POI_CATEGORY"))
     private Category category;

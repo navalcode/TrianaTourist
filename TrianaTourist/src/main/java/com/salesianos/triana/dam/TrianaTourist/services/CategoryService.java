@@ -7,7 +7,10 @@ import com.salesianos.triana.dam.TrianaTourist.dto.category.CreateCategoryDto;
 import com.salesianos.triana.dam.TrianaTourist.errores.excepciones.ListEntityNotFoundException;
 import com.salesianos.triana.dam.TrianaTourist.errores.excepciones.SingleEntityNotFoundException;
 import com.salesianos.triana.dam.TrianaTourist.models.Category;
+import com.salesianos.triana.dam.TrianaTourist.models.Poi;
+import com.salesianos.triana.dam.TrianaTourist.repositories.PoiRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.salesianos.triana.dam.TrianaTourist.repositories.CategoryRepository;
@@ -19,6 +22,7 @@ import java.util.List;
 public class CategoryService {
     private final CategoryRepository categoryRepository;
     private final CategoryDtoConverter categoryDtoConverter;
+    private final PoiRepository poiRepository;
 
     public List<CategoryDto> findAll() {
         List<Category>data = categoryRepository.findAll();
@@ -54,6 +58,9 @@ public class CategoryService {
      if(!categoryRepository.existsById(id)){
         throw new SingleEntityNotFoundException(id,Category.class);
     }
+     List<Poi> pois = poiRepository.findAllByCategoryId(id);
+    pois.stream().forEach(poi -> poi.setCategory(null));
+    pois.stream().forEach(poi -> poiRepository.save(poi));
         categoryRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
