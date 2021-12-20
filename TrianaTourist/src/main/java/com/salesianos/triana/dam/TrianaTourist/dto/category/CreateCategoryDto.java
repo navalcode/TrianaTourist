@@ -1,6 +1,6 @@
 package com.salesianos.triana.dam.TrianaTourist.dto.category;
 
-import com.salesianos.triana.dam.TrianaTourist.validacion.UniqueName;
+import com.salesianos.triana.dam.TrianaTourist.validacion.name.UniqueName;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;

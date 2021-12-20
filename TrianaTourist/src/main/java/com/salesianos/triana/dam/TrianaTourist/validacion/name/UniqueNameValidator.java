@@ -1,9 +1,7 @@
-package com.salesianos.triana.dam.TrianaTourist.validacion;
+package com.salesianos.triana.dam.TrianaTourist.validacion.name;
 
-import com.salesianos.triana.dam.TrianaTourist.repositories.CategoryRepository;
 import com.salesianos.triana.dam.TrianaTourist.services.CategoryService;
 import lombok.AllArgsConstructor;
-import org.springframework.util.StringUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

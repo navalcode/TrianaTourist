@@ -1,8 +1,7 @@
-package com.salesianos.triana.dam.TrianaTourist.validacion;
+package com.salesianos.triana.dam.TrianaTourist.validacion.ubicacion;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.concurrent.ConcurrentMap;
 
 public class UbicacionPatternValidator implements ConstraintValidator<UbicacionPattern, String> {
     private String LATITUDE_PATTERN="^(\\+|-)?(?:90(?:(?:\\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\\.[0-9]{1,6})?))$";

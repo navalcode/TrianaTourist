@@ -409,6 +409,34 @@
 					"response": []
 				},
 				{
+					"name": "Create Poi Category not real",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Un Poi\",\r\n    \"location\":\"-5.988765,30.765432\",\r\n    \"date\": \"08/09/1976\",\r\n    \"cat_id\": 999,\r\n    \"coverPhoto\": \"https://static3.depositphotos.com/1006009/206/i/600/depositphotos_2062498-stock-photo-hello-world.jpg\",\r\n    \"photo2\":\"https://static3.depositphotos.com/1006009/206/i/600/depositphotos_2062498-stock-photo-hello-world.jpg\",\r\n    \"photo3\":\"https://static3.depositphotos.com/1006009/206/i/600/depositphotos_2062498-stock-photo-hello-world.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/poi/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"poi",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create Poi error ubicación",
 					"request": {
 						"method": "POST",

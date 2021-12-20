@@ -1,4 +1,4 @@
-package com.salesianos.triana.dam.TrianaTourist.validacion;
+package com.salesianos.triana.dam.TrianaTourist.validacion.name;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
