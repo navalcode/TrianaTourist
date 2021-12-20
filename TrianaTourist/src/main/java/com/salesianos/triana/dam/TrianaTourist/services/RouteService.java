@@ -67,6 +67,19 @@ public class RouteService {
 
     }
 
+    public RouteDto addPoiToRoute(Long id, Long idPoi) {
+        Route route = routeRepository.findById(id).orElse(null);
+        if (route == null) {
+            throw new SingleEntityNotFoundException(id,Category.class);
+        }
+        Poi poi = poiRepository.findById(idPoi).orElse(null);
+        if (poi == null) {
+            throw new SingleEntityNotFoundException(idPoi,Poi.class);
+        }
+        route.getSteps().add(poi);
+        return routeConverter.toDto(routeRepository.save(route));
+    }
+
     public ResponseEntity<?> deleteById(Long id) {
         if(!routeRepository.existsById(id)){
             throw new SingleEntityNotFoundException(id,Category.class);

@@ -38,6 +38,10 @@ public class RouteController {
     public RouteDto editRoute(@PathVariable @Min(value = 0,message = "No se pueden buscar rutas con un identificador negativo") Long id, @RequestBody CreateRouteDto dto){
         return routeService.edit(id,dto);
     }
+    @PutMapping("/{id}/{id2}")
+    public RouteDto editRoute(@PathVariable @Min(value = 0,message = "No se pueden buscar rutas con un identificador negativo") Long id, @PathVariable @Min(value = 0,message = "No se pueden buscar rutas con un identificador negativo") Long id2){
+        return routeService.addPoiToRoute(id,id2);
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteRoute(@PathVariable @Min(value = 0, message = "No se puede eliminar una ruta con identificador negativo") Long id){
