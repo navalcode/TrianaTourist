@@ -1,5 +1,6 @@
 package com.salesianos.triana.dam.TrianaTourist.controllers;
 
+import com.salesianos.triana.dam.TrianaTourist.dto.poi.PoiDto;
 import com.salesianos.triana.dam.TrianaTourist.services.PoiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class PoiController {
     private PoiService poiService;
 
     @GetMapping("/")
-    public List<?> listarTodas(){
+    public List<PoiDto> listarTodas(){
         return poiService.findAll();
     }
 }

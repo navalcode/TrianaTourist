@@ -17,8 +17,6 @@ import java.util.stream.Collectors;
 @Component
 @AllArgsConstructor
 public class RouteConverter {
-    private final PoiDtoConverter poiDtoConverter;
-    private final PoiService poiService;
 
     public RouteDto toDto(Route route){
         List<Long> pois= new ArrayList<>();
@@ -31,13 +29,4 @@ public class RouteConverter {
                 .build();
     }
 
-    public Route toEntity(CreateRouteDto dto) {
-        List<Poi> pois= new ArrayList<>();
-        dto.getIds().stream().forEach(x-> pois.add(poiService.findByIdToCreatePoi(x)));
-
-        return Route.builder()
-                .name(dto.getName())
-                .steps(pois)
-             .build();
-    }
 }

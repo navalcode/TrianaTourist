@@ -6,6 +6,7 @@ import com.salesianos.triana.dam.TrianaTourist.dto.Route.RouteDto;
 import com.salesianos.triana.dam.TrianaTourist.errores.excepciones.ListEntityNotFoundException;
 import com.salesianos.triana.dam.TrianaTourist.errores.excepciones.SingleEntityNotFoundException;
 import com.salesianos.triana.dam.TrianaTourist.models.Category;
+import com.salesianos.triana.dam.TrianaTourist.models.Poi;
 import com.salesianos.triana.dam.TrianaTourist.models.Route;
 import com.salesianos.triana.dam.TrianaTourist.repositories.PoiRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.salesianos.triana.dam.TrianaTourist.repositories.RouteRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,6 +24,7 @@ public class RouteService {
 
     private final RouteRepository routeRepository;
     private final PoiRepository poiRepository;
+    private final PoiService poiService;
     private final RouteConverter routeConverter;
 
     public List<RouteDto> findAll() {
@@ -41,8 +44,13 @@ public class RouteService {
     }
 
     public RouteDto save(CreateRouteDto dto) {
-        Route route = routeConverter.toEntity(dto);
-       return routeConverter.toDto(routeRepository.save(route));
+        List<Poi> pois= new ArrayList<>();
+        dto.getIds().stream().forEach(x-> pois.add(poiService.findByIdToCreatePoi(x)));
+
+       return routeConverter.toDto(routeRepository.save( Route.builder()
+               .name(dto.getName())
+               .steps(pois)
+               .build()));
     }
 
     public RouteDto edit(Long id,CreateRouteDto dto){
@@ -50,10 +58,11 @@ public class RouteService {
         if (route == null) {
             throw new SingleEntityNotFoundException(id,Category.class);
         }
-        Route route2= routeConverter.toEntity(dto);
+        List<Poi> pois= new ArrayList<>();
+        dto.getIds().stream().forEach(x-> pois.add(poiService.findByIdToCreatePoi(x)));
 
         route.setName(dto.getName());
-        route.setSteps(route2.getSteps());
+        route.setSteps(pois);
         return routeConverter.toDto(routeRepository.save(route));
 
     }
