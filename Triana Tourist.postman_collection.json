@@ -477,6 +477,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Route by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/route/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"route",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

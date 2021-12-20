@@ -39,4 +39,9 @@ public class RouteController {
         return routeService.edit(id,dto);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteRoute(@PathVariable @Min(value = 0, message = "No se puede eliminar una ruta con identificador negativo") Long id){
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(routeService.deleteById(id));
+    }
+
 }

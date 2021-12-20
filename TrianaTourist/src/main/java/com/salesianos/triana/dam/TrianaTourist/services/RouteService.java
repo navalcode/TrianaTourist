@@ -10,6 +10,7 @@ import com.salesianos.triana.dam.TrianaTourist.models.Route;
 import com.salesianos.triana.dam.TrianaTourist.repositories.PoiRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.salesianos.triana.dam.TrianaTourist.repositories.RouteRepository;
 
@@ -55,5 +56,13 @@ public class RouteService {
         route.setSteps(route2.getSteps());
         return routeConverter.toDto(routeRepository.save(route));
 
+    }
+
+    public ResponseEntity<?> deleteById(Long id) {
+        if(!routeRepository.existsById(id)){
+            throw new SingleEntityNotFoundException(id,Category.class);
+        }
+        routeRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
