@@ -25,13 +25,18 @@ public class RouteController {
     }
 
     @GetMapping("/{id}")
-    public RouteDto getRouteById(@PathVariable @Min(value = 0, message = "No se pueden buscar categorias con un identificador negativo") Long id) {
+    public RouteDto getRouteById(@PathVariable @Min(value = 0, message = "No se pueden buscar rutas con un identificador negativo") Long id) {
         return routeService.findById(id);
     }
 
     @PostMapping("/")
     public ResponseEntity<RouteDto> saveRoute(@RequestBody CreateRouteDto dto) {
        return ResponseEntity.status(HttpStatus.CREATED).body(routeService.save(dto));
+    }
+
+    @PutMapping("/{id}")
+    public RouteDto editRoute(@PathVariable @Min(value = 0,message = "No se pueden buscar rutas con un identificador negativo") Long id, @RequestBody CreateRouteDto dto){
+        return routeService.edit(id,dto);
     }
 
 }

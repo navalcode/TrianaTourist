@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e9860ce7-9e32-4553-8322-306298a9b500",
+		"_postman_id": "48bccc7e-f2e4-4ba1-8b98-dc7e67471c78",
 		"name": "Triana Tourist",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -445,6 +445,34 @@
 							"path": [
 								"route",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Route",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Ruta editada\",\r\n    \"ids\":[1,1]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/route/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"route",
+								"1"
 							]
 						}
 					},
