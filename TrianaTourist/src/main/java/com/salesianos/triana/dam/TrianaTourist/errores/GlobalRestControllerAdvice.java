@@ -9,6 +9,8 @@ import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -17,6 +19,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.validation.ConstraintViolationException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,14 +29,42 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return buildApiError("Hay errores en el formulario", request, ex.getFieldErrors().stream()
-                .map(err -> ApiValidationSubError.builder()
-                        .objeto(err.getObjectName())
-                        .campo(err.getField())
-                        .mensaje(err.getDefaultMessage())
-                        .valorRechazado(err.getRejectedValue())
-                        .build()).collect(Collectors.toList())
-        );
+
+
+        List<ApiSubError> subErrorList = new ArrayList<>();
+
+        ex.getAllErrors().forEach(error -> {
+
+            // Si el error de validación se ha producido a raíz de una anotación en un atributo...
+            if (error instanceof FieldError) {
+                FieldError fieldError = (FieldError) error;
+
+                subErrorList.add(
+                        ApiValidationSubError.builder()
+                                .objeto(fieldError.getObjectName())
+                                .campo(fieldError.getField())
+                                .valorRechazado(fieldError.getRejectedValue())
+                                .mensaje(fieldError.getDefaultMessage())
+                                .build()
+                );
+            }
+            else
+            {
+                ObjectError objectError = (ObjectError) error;
+
+                subErrorList.add(
+                        ApiValidationSubError.builder()
+                                .objeto(objectError.getObjectName())
+                                .mensaje(objectError.getDefaultMessage())
+                                .build()
+                );
+            }
+
+
+        });
+
+        return buildApiError("Hay errores en el formulario", request, subErrorList);
+
     }
 
     @ExceptionHandler({EntityNotFoundException.class})

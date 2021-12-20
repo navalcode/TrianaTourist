@@ -1,4 +1,4 @@
-package com.salesianos.triana.dam.TrianaTourist.validacion.route;
+package com.salesianos.triana.dam.TrianaTourist.validacion.route.name;
 
 import com.salesianos.triana.dam.TrianaTourist.repositories.RouteRepository;
 import lombok.AllArgsConstructor;

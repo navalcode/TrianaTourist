@@ -14,4 +14,6 @@ public interface RouteRepository extends JpaRepository<Route,Long> {
     List<Route> findAllByIdPoi(Long id);
 
     boolean existsByName(String value);
+
+    Route findByName(String name);
 }

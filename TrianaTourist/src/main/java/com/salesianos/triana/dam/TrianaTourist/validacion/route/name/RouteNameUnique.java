@@ -1,6 +1,4 @@
-package com.salesianos.triana.dam.TrianaTourist.validacion.route;
-
-import com.salesianos.triana.dam.TrianaTourist.validacion.name.UniqueNameValidator;
+package com.salesianos.triana.dam.TrianaTourist.validacion.route.name;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
