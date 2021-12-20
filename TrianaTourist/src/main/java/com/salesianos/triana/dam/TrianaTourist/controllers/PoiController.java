@@ -39,4 +39,7 @@ public class PoiController {
     public PoiDto edit(@RequestBody @Valid CreatePoiDto dto, @PathVariable @Min(value = 0,message = "No se puede buscar un Poi por un identificador negativo") Long id){
         return poiService.edit(dto,id);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable @Min(value = 0, message = "No se puede eliminar un Poi con un identificador negativo"))
 }
