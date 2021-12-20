@@ -45,4 +45,6 @@ public class CategoryController {
     public ResponseEntity<?> deleteCategory(@PathVariable @Min(value = 0, message = "No se pueden eliminar categorias con un identificador negativo") Long id) {
     return ResponseEntity.status(HttpStatus.NO_CONTENT).body(categoryService.deleteById(id));
     }
+
+
 }
