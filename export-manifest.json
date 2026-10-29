@@ -1,0 +1,74 @@
+[
+  {
+    "path": ".gitignore",
+    "sha256": "dcc1d61ea0ca0dedf6456f467d4c832743f68ea0144ec638a740ab231e3e4ee2"
+  },
+  {
+    "path": "DESIGN.md",
+    "sha256": "fc9123704464cad2fdcad18584c021cf28d0fd016bbffbfac6cc36e0e222e15f"
+  },
+  {
+    "path": "README.es.md",
+    "sha256": "60cccb87ef069047ea58db5a21962e34a076e0da9d8516cc8e4613883ad88c6d"
+  },
+  {
+    "path": "README.md",
+    "sha256": "2d0d15deb474db279b3624ace071ee2e0dc12a3808025d8ba1fb4925ac26dd45"
+  },
+  {
+    "path": "THIRD_PARTY.md",
+    "sha256": "f5c37dc2448e54c8f567c62ebcf105e8e5a184039a1c2bdad544db909be3b80a"
+  },
+  {
+    "path": "TrianaTourist/src/main/java/com/salesianos/triana/dam/TrianaTourist/dto/Route/CreateRouteDto.java",
+    "sha256": "077de78016487e8ba1b6f44fe64b017b07ceaea64705698d6320ca43ff7f5173"
+  },
+  {
+    "path": "TrianaTourist/src/main/java/com/salesianos/triana/dam/TrianaTourist/dto/category/CreateCategoryDto.java",
+    "sha256": "ff2bd66008e7e6b946cf3241c70dbe2e91e7e8ab8b81fd633d2ddb1525d99b0c"
+  },
+  {
+    "path": "TrianaTourist/src/main/java/com/salesianos/triana/dam/TrianaTourist/errores/GlobalRestControllerAdvice.java",
+    "sha256": "8f15c25ec305604ddd22f7595fc9f8ba7a0a2f30a068cac563f88f323cd79341"
+  },
+  {
+    "path": "TrianaTourist/src/main/java/com/salesianos/triana/dam/TrianaTourist/errores/excepciones/InvalidRequestException.java",
+    "sha256": "7cff8ef70a4cb2378ede5ee808d4f40da6480de8e7e0b9771168f63ea29c5210"
+  },
+  {
+    "path": "TrianaTourist/src/main/java/com/salesianos/triana/dam/TrianaTourist/repositories/CategoryRepository.java",
+    "sha256": "a07572db2bad7c59fb2ef32fa70a9ebcc0cc69c6f1235689a17460f963b514fd"
+  },
+  {
+    "path": "TrianaTourist/src/main/java/com/salesianos/triana/dam/TrianaTourist/services/CategoryService.java",
+    "sha256": "7dc73a77676e894f3b5e9862713c95a154de3778237141beca65d75920456672"
+  },
+  {
+    "path": "TrianaTourist/src/main/java/com/salesianos/triana/dam/TrianaTourist/services/PoiService.java",
+    "sha256": "3eb0a038d36d727291b4596bf13d786efaf244adb21496817bbd3cc56f747cc6"
+  },
+  {
+    "path": "TrianaTourist/src/main/java/com/salesianos/triana/dam/TrianaTourist/services/RouteService.java",
+    "sha256": "4441f529e6c377165e63db7efcd5f317243b1d646ee460d7b19dc5a0557328cd"
+  },
+  {
+    "path": "TrianaTourist/src/main/java/com/salesianos/triana/dam/TrianaTourist/validacion/route/poi/NotDuplicatedPoiValidator.java",
+    "sha256": "ed9636b2a3e52327dfccd05318d5be7f4a11ec271da0cfd22937f79934d6e30f"
+  },
+  {
+    "path": "TrianaTourist/src/main/java/com/salesianos/triana/dam/TrianaTourist/validacion/ubicacion/UbicacionPatternValidator.java",
+    "sha256": "bc00e55e199bb3cd891d0de3b85b710dac57223ef02831aa8c2f4aef65ff9962"
+  },
+  {
+    "path": "TrianaTourist/src/main/resources/application.properties",
+    "sha256": "ac8fb9d74727f4faf84385a0728fa58502b9460691e2a62250a4109881a70fe6"
+  },
+  {
+    "path": "TrianaTourist/src/test/java/com/salesianos/triana/dam/TrianaTourist/TouristHttpJourneyTest.java",
+    "sha256": "54eff687da3cae8413fba455ded2fdac9bc7af04d27d3a6ad306db4f2b53a656"
+  },
+  {
+    "path": "docs/verification.json",
+    "sha256": "35bb28c1f56dd3165edac0921c3cf283a9ba348b77a33e61af84c45259642650"
+  }
+]

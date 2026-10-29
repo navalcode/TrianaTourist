@@ -14,6 +14,6 @@ import javax.validation.constraints.NotNull;
 public class CreateCategoryDto {
     @NotEmpty(message = "El nombre no puede estar vacio")
     @NotNull(message = "El nombre no puede ser nulo")
-    @UniqueName(message = "La categoría ya existe")
+    @javax.validation.constraints.NotBlank(message = "El nombre no puede estar en blanco")
     private String name;
 }

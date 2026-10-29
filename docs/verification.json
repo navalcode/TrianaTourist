@@ -1,0 +1,155 @@
+{
+  "kind": "recorded_local_result",
+  "checked_on": "2026-10-29",
+  "platform": "macOS",
+  "jdk": {
+    "version": "17.0.14",
+    "vendor": "Amazon.com Inc."
+  },
+  "source_baseline": "d8ac74c66354917a789e019ed4cd74f88dcb1ec4",
+  "test_total": 14,
+  "checks": [
+    {
+      "module": "TrianaTourist",
+      "command": "sh ./mvnw verify",
+      "junit": {
+        "tests": 14,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "log_sha256": "ae4355ed93796a70274714e45b099163740ea95699483f29cbc529bd827ab6fc",
+      "junit_xml_sha256": [
+        "dc5422e5c1aa45266ef6cad53dc4d3d0667eb6c7bff469125a3913d5d469bf9e",
+        "64b5c3d1b1c85f226250808ed0c1e7bfa8e0032fbcb43e78a958bc82e1661197"
+      ]
+    }
+  ],
+  "hosted_ci_run": null,
+  "scope": "Local tests/package with original Maven/Spring pins and isolated settings/repository. No hosted CI or production result is implied.",
+  "packaged_runtime": {
+    "repository": "TrianaTourist",
+    "artifact_sha256": "07dbc3fc69732f26d74df12cc3ab9be3281a0af5d210462d23d05d4f35501314",
+    "packaged_config_matches_reviewed_source": true,
+    "binding": "loopback, OS-assigned port",
+    "database": "default H2 memory URL; no file database override or external service",
+    "journeys": [
+      {
+        "method": "POST",
+        "path": "/category/",
+        "status": 201,
+        "response": {
+          "id": 2,
+          "name": "Runtime sample category"
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/poi/",
+        "status": 201,
+        "response": {
+          "id": 3,
+          "name": "Fictional runtime point",
+          "location": "0,0",
+          "date": null,
+          "category": {
+            "id": 2,
+            "name": "Runtime sample category"
+          },
+          "coverPhoto": "https://images.example.invalid/sample.png",
+          "photo2": null,
+          "photo3": null
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/route/",
+        "status": 201,
+        "response": {
+          "id": 2,
+          "name": "Runtime sample route",
+          "steps": [
+            3
+          ]
+        }
+      },
+      {
+        "method": "PUT",
+        "path": "/route/2",
+        "status": 200,
+        "response": {
+          "id": 2,
+          "name": "Runtime sample route",
+          "steps": [
+            3
+          ]
+        }
+      },
+      {
+        "method": "PUT",
+        "path": "/route/2/3",
+        "status": 400,
+        "response": {
+          "estado": "BAD_REQUEST",
+          "mensaje": "La ruta no puede tener dos puntos de inter\u00e9s iguales",
+          "codigo": 400,
+          "ruta": "/route/2/3",
+          "fecha": "29/10/2026 21:35:11",
+          "subErrores": []
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/poi/",
+        "status": 400,
+        "response": {
+          "estado": "BAD_REQUEST",
+          "mensaje": "Hay errores en el formulario",
+          "codigo": 400,
+          "ruta": "/poi/",
+          "fecha": "29/10/2026 21:35:11",
+          "subErrores": [
+            {
+              "objeto": "createPoiDto",
+              "campo": "location",
+              "valorRechazado": "invalid",
+              "mensaje": "La ubicacion no es correcta, debe seguir el esquema: LL.LLLLLL,LL.LLLLLL"
+            }
+          ]
+        }
+      },
+      {
+        "method": "DELETE",
+        "path": "/route/9223372036854775807",
+        "status": 404,
+        "response": {
+          "estado": "NOT_FOUND",
+          "mensaje": "No se ha encontrado la entidad con id 9223372036854775807 de la clase Route",
+          "codigo": 404,
+          "ruta": "/route/9223372036854775807",
+          "fecha": "29/10/2026 21:35:11"
+        }
+      },
+      {
+        "method": "DELETE",
+        "path": "/poi/3",
+        "status": 204,
+        "response": null
+      },
+      {
+        "method": "GET",
+        "path": "/route/2",
+        "status": 200,
+        "response": {
+          "id": 2,
+          "name": "Runtime sample route",
+          "steps": []
+        }
+      }
+    ],
+    "process_stopped": true,
+    "exit_code": 143,
+    "shutdown_completed": true,
+    "scope": "Real packaged JAR and HTTP requests, separate from MockMvc/JPA tests"
+  }
+}

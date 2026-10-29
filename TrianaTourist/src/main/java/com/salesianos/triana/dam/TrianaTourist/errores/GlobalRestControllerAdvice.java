@@ -67,6 +67,11 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
 
     }
 
+    @ExceptionHandler(com.salesianos.triana.dam.TrianaTourist.errores.excepciones.InvalidRequestException.class)
+    public ResponseEntity<Object> handleInvalidRequest(RuntimeException ex, WebRequest request) {
+        return buildApiError(ex.getMessage(), request, new ArrayList<>());
+    }
+
     @ExceptionHandler({EntityNotFoundException.class})
     public ResponseEntity<?> handleNotFoundException(EntityNotFoundException ex, WebRequest request) {
         return buildApiError(ex, request);
@@ -92,7 +97,9 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return buildApiError(ex, request);
+        ApiError error = new ApiError(status, status.getReasonPhrase(),
+                ((ServletWebRequest) request).getRequest().getRequestURI());
+        return new ResponseEntity<>(error, headers, status);
     }
 
     private final ResponseEntity<Object> buildApiError(Exception ex, WebRequest request) {

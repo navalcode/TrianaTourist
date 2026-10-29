@@ -13,11 +13,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.salesianos.triana.dam.TrianaTourist.errores.excepciones.InvalidRequestException;
 import com.salesianos.triana.dam.TrianaTourist.repositories.CategoryRepository;
 
 import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class CategoryService {
     private final CategoryRepository categoryRepository;
@@ -41,6 +44,7 @@ public class CategoryService {
     }
 
     public CategoryDto save(CreateCategoryDto categoryDto) {
+        requireUniqueName(categoryDto.getName(), null);
         Category category = categoryDtoConverter.convertToEntity(categoryDto);
         return categoryDtoConverter.convertToDto(categoryRepository.save(category));
     }
@@ -50,6 +54,7 @@ public class CategoryService {
         if (category == null) {
             throw new SingleEntityNotFoundException(id,Category.class);
         }
+        requireUniqueName(categoryDto.getName(), id);
         category.setName(categoryDto.getName());
         return categoryDtoConverter.convertToDto(categoryRepository.save(category));
     }
@@ -79,5 +84,11 @@ public class CategoryService {
 
     public boolean existsById(Long id) {
         return categoryRepository.existsById(id);
+    }
+    private void requireUniqueName(String name, Long currentId) {
+        Category existing = categoryRepository.findByName(name);
+        if (existing != null && !existing.getId().equals(currentId)) {
+            throw new InvalidRequestException("La categoría ya existe");
+        }
     }
 }

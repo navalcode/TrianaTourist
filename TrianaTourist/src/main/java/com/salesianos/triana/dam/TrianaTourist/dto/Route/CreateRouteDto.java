@@ -11,9 +11,11 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@NotDuplicatedPoi(nameField = "name", idsField = "Ids", message = "La ruta no puede tener dos puntos de interes iguales")
+@NotDuplicatedPoi(nameField = "name", idsField = "ids", message = "La ruta no puede tener dos puntos de interes iguales")
 public class CreateRouteDto {
-    @RouteNameUnique
+    @javax.validation.constraints.NotBlank(message = "El nombre no puede estar en blanco")
     private String name;
-    private List<Long> Ids= new ArrayList<>();
+    @Builder.Default
+    @javax.validation.constraints.NotNull
+    private List<@javax.validation.constraints.NotNull Long> Ids = new ArrayList<>();
 }

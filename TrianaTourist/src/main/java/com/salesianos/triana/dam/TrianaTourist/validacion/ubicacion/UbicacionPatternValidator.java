@@ -13,13 +13,9 @@ public class UbicacionPatternValidator implements ConstraintValidator<UbicacionP
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext context) {
-        String latitud = s.substring(0, s.indexOf(","));
-        String longitud = s.substring(s.indexOf(",") + 1);
-
-        if(latitud.matches(LATITUDE_PATTERN) && longitud.matches(LONGITUDE_PATTERN)){
-            return true;
-        }else{
-            return false;
-        }
+        if (s == null) return false;
+        String[] coordinates = s.split(",", -1);
+        return coordinates.length == 2 && coordinates[0].matches(LATITUDE_PATTERN)
+                && coordinates[1].matches(LONGITUDE_PATTERN);
     }
 }

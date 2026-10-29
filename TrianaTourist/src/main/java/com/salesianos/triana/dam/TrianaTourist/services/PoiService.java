@@ -14,12 +14,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.salesianos.triana.dam.TrianaTourist.errores.excepciones.InvalidRequestException;
 import com.salesianos.triana.dam.TrianaTourist.repositories.PoiRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class PoiService {
 
@@ -59,7 +62,7 @@ public class PoiService {
         if(poi == null){
             throw new SingleEntityNotFoundException(id,Poi.class);
         }
-        Category category = categoryService.findCategoryById(id);
+        Category category = categoryService.findCategoryById(dto.getCat_id());
         poi.setName(dto.getName());
         poi.setCategory(category);
         poi.setCoverPhoto(dto.getCoverPhoto());
